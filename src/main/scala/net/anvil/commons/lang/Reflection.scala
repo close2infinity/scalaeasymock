@@ -29,7 +29,7 @@ object Reflection {
    *   ambiguous and matched multiple constructors. 
    * @see ConstructorDescriptor
    */
-  def findDeclared[T](constructorDescriptor: ConstructorDescriptor[T]) (implicit manifest: Manifest[T]): 
+  def findDeclaredConstructorIn[T](constructorDescriptor: ConstructorDescriptor[T]) (implicit manifest: Manifest[T]): 
     Constructor[T] = singleConstructorMatching(constructorDescriptor, getDeclaredConstructorsOf[T]) 
 
   /**
@@ -43,15 +43,23 @@ object Reflection {
    * @see #findDeclaredConstructor(ConstructorDescriptor)
    * @see ConstructorDescriptor
    */
-  def findAllDeclared[T]
+  def findAllDeclaredConstructorsIn[T]
     (firstConstructorDescriptor: ConstructorDescriptor[T], otherConstructorDescriptors: ConstructorDescriptor[T]*) 
     (implicit manifest: Manifest[T]): List[Constructor[T]] = 
+  { 
+    findAllDeclaredConstructorsIn[T](firstConstructorDescriptor :: List(otherConstructorDescriptors: _*))
+  }
+  
+  def findAllDeclaredConstructorsIn[T]
+    (descriptors: Seq[ConstructorDescriptor[T]])
+    (implicit manifest: Manifest[T]): List[Constructor[T]] =
   {
     val declaredConstructors = getDeclaredConstructorsOf[T]
     
-    for (constructorDescriptor <- firstConstructorDescriptor :: List(otherConstructorDescriptors: _*)) 
+    for (constructorDescriptor <- asList(descriptors)) 
       yield singleConstructorMatching[T](constructorDescriptor, declaredConstructors)
-  }
+  }    
+      
     
   private def getDeclaredConstructorsOf[T](implicit manifest: Manifest[T]): List[Constructor[T]] =  
     List(manifest.erasure.getDeclaredConstructors.asInstanceOf[Array[Constructor[T]]]: _*)
@@ -83,7 +91,7 @@ object Reflection {
    *   and matched multiple methods. 
    * @see MethodDescriptor[T]
    */
-  def findDeclared[T](methodDescriptor: MethodDescriptor[T])(implicit manifest: Manifest[T]): Method = 
+  def findDeclaredMethodIn[T](methodDescriptor: MethodDescriptor[T])(implicit manifest: Manifest[T]): Method = 
       singleMethodMatching(methodDescriptor, mapDeclaredMethodsOf[T])
 
   /**
@@ -98,14 +106,24 @@ object Reflection {
    * @see #findDeclaredMethod(MethodDescriptor[T])
    * @see MethodDescriptor[T]
    */
-  def findAllDeclared[T]
+  def findAllDeclaredMethodsIn[T]
     (firstMethodDescriptor: MethodDescriptor[T], otherMethodDescriptors: MethodDescriptor[T]*)
     (implicit manifest: Manifest[T]): List[Method] = 
   {
+    findAllDeclaredMethodsIn(firstMethodDescriptor :: List(otherMethodDescriptors: _*))  
+  }
+  
+  def findAllDeclaredMethodsIn[T]
+    (descriptors: Seq[MethodDescriptor[T]]) 
+    (implicit manifest: Manifest[T]): List[Method] = 
+  {
     val declaredMethods: Map[String, List[Method]] = mapDeclaredMethodsOf[T]
-
-    for (methodDescriptor <- firstMethodDescriptor :: List[MethodDescriptor[T]](otherMethodDescriptors: _*))
-      yield singleMethodMatching(methodDescriptor, declaredMethods)
+    for (methodDescriptor <- asList(descriptors)) yield singleMethodMatching(methodDescriptor, declaredMethods)
+  }
+  
+  private def asList[T](someSequence: Seq[T]): List[T] = someSequence match {
+    case aList: List[_] => aList
+    case _ => List(someSequence: _*) 
   }
   
   /**
@@ -204,6 +222,7 @@ case class ConstructorDescriptor[T](override val argumentsDescriptor: ArgumentsD
 
 object ConstructorDescriptor {
   def constructorIn[T](arguments: ArgumentsDescriptor = WithAnyArguments()) = new ConstructorDescriptor[T](arguments)
+  implicit def toConstructorDescriptor[T](arguments: ArgumentsDescriptor) = new ConstructorDescriptor[T](arguments)
 }
 
 /**
@@ -219,5 +238,8 @@ case class MethodDescriptor[T](name: String, override val argumentsDescriptor: A
 object MethodDescriptor {
   def methodIn[T](name: String, arguments: ArgumentsDescriptor = WithAnyArguments()) = 
     new MethodDescriptor[T](name, arguments)
+  implicit def toMethodDescriptor[T](methodName: String) = new MethodDescriptor[T](methodName)
+  implicit def toMethodDescriptor[T](methodNameAndArguments: (String, ArgumentsDescriptor)) = 
+    new MethodDescriptor[T](methodNameAndArguments._1, methodNameAndArguments._2)
 }
 

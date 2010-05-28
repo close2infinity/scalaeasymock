@@ -62,7 +62,7 @@ class MocksControl(val decorated: IMocksControl) {
     (implicit manifest: Manifest[T]): T = 
   {
     val mockedMethods = 
-      Reflection.findAllDeclared[T](firstMockedMethodDescriptor, otherMockedMethodDescriptors: _*)
+      Reflection.findAllDeclaredMethodsIn[T](firstMockedMethodDescriptor, otherMockedMethodDescriptors: _*)
         
     if (constructorArgs != NoConstructorArgs) 
       decorated.createMock(name, manifest.erasure, constructorArgs, mockedMethods: _*).asInstanceOf[T]

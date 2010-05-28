@@ -57,7 +57,7 @@ class ConstructorArgsFactory(mocks: MocksControl) {
   def createFor[T](constructorDescriptor: ConstructorDescriptor[T], specifiedArguments: AnyRef*)
     (implicit manifest: Manifest[T]) = 
   { 
-    val constructor = Reflection.findDeclared[T](constructorDescriptor)
+    val constructor = Reflection.findDeclaredConstructorIn[T](constructorDescriptor)
     new ConstructorArgs(constructor, completeConstructorArgsFor(constructor, List(specifiedArguments: _*)): _*)
   }
 

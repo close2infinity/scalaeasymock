@@ -3,7 +3,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>net.anvil</groupId>
 	<artifactId>ScalaEasyMock</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>1.0.0-SNAPSHOT</version>
 	<description>Scala API for EasyMock 2.5 controls and class extension</description>
 	<organization>
 		<name>the-anvil.net</name>

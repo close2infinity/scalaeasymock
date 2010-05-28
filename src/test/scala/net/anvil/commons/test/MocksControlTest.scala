@@ -2,6 +2,7 @@ package net.anvil.commons.test
 
 import org.junit._
 
+
 import java.lang.reflect.Method
 
 import org.junit.runner._
@@ -62,7 +63,7 @@ class MocksControlTest extends JUnitSuite {
   def mockIn_ShouldCreateMockForMethodWithArgumentCountDescriptor() {
 
     // --- Call SUT:  
-    val rs = mocks.mockIn[MyClass](methodIn[MyClass]("method2", WithNumberOfArguments(2)))
+    val rs = mocks.mockIn[MyClass](("method2", WithNumberOfArguments(2)))
     mocks.replay
     
     // --- Verify: 
@@ -74,15 +75,17 @@ class MocksControlTest extends JUnitSuite {
   }
 
   @Test 
-  def mock_ShouldCreateMockForMethodWithArgumentTypesDescriptor() {
+  def mock_ShouldCreateMockForMultipleMethodsWithArgumentCountAndTypesDescriptor() {
 
     // --- Call SUT:  
-    val rs = mocks.mockIn[MyClass](methodIn[MyClass]("method3", WithArgumentTypes(classOf[String], classOf[Boolean])))
+    val rs = mocks.mockIn[MyClass](
+      ("method2", WithNumberOfArguments(1)), 
+      ("method3", WithArgumentTypes(classOf[String], classOf[Boolean])))
     mocks.replay
 
     // --- Verify: 
     rs.method1("test")
-    rs.method2("test")
+    assertThrows[AssertionError] { rs.method2("test") }
     rs.method2("test", "test")    
     rs.method3("test", "test")
     assertThrows[AssertionError] { rs.method3("test", true) }

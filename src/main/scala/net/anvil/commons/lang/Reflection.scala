@@ -17,10 +17,10 @@ object Reflection {
    * *Example* (returns `Date(year: Integer, month: Integer, date: Integer, 
    *   hrs: Integer, min: Integer, sec: Integer)`:
    * {{{
-   * Reflection.findDeclared(constructorIn[java.util.Date](WithNumberOfArguments(6)))
+   * Reflection.findDeclaredConstructorIn[java.util.Date](WithNumberOfArguments(6)))
    * }}}
    * 
-   * @param constructorDescriptor an unambiguous constructor descriptor.  
+   * @param constructorDescriptor an unambiguous constructor descriptor. 
    * @return a single method matching the descriptor.
    * 
    * @throws NoSuchElementException if the constructor descriptor didn't match 
@@ -35,6 +35,8 @@ object Reflection {
   /**
    * Find multiple constructors using constructor descriptors.
    * 
+   * @param firstConstructorDescriptor the first mandatory descriptor. 
+   * @param otherConstructorDescriptors
    * @return a list of constructor, one for each specified descriptor. 
    * @throws NoSuchElementException if any of the specified constructor 
    *   descriptors didn't match any declared constructor.
@@ -79,7 +81,7 @@ object Reflection {
    * 
    * *Example* (returns `String.format(l: Locale, format: String, args: Object*)`:
    * {{{
-   * Reflection.findDeclared(methodIn[java.lang.String]("format", WithNumberOfArguments(3)))
+   * Reflection.findDeclaredMethodIn[java.lang.String]("format", WithNumberOfArguments(3))
    * }}}
    * 
    * @param methodDescriptor an unambiguous method descriptor.  
@@ -127,7 +129,7 @@ object Reflection {
   }
   
   /**
-   * Get all declared methods form the class and put them into a map.
+   * Put all methods declared on a class into a map.
    * 
    * @return a map from method name to a list of all methods with that name.
    * @todo Using append (:+) operation may be inefficient.

@@ -1,0 +1,148 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html>
+        <head>
+          <title>Scaladoc for net.anvil.commons.lang</title>
+          <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+		      <script type="text/javascript" src="../../../../lib/jquery.js"></script>
+          
+      <link href="../../../../lib/template.css" rel="stylesheet" type="text/css" media="screen" />
+      <script type="text/javascript" src="../../../../lib/template.js"></script>
+      <script type="text/javascript" src="../../../../lib/tools.tooltip.js"></script>
+    
+        </head>
+        <body class="value">
+
+      <p id="owner"><a href="../../../package.html" class="extype" name="net">net</a>.<a href="../../package.html" class="extype" name="net.anvil">anvil</a>.<a href="../package.html" class="extype" name="net.anvil.commons">commons</a></p>
+
+      <div id="definition">
+        <img src="../../../../lib/package_big.png" />
+        <h1>lang</h1>
+      </div>
+
+      <h4 class="signature" id="signature">
+      <span class="kind">package</span>
+      <span class="symbol">
+        <span class="name">lang</span>
+      </span>
+      </h4>
+      <div class="fullcomment" id="comment"></div>
+      
+      <div id="template">
+
+        <div id="mbrsel">
+          
+          <div id="visbl">
+            <span class="filtertype">Visibility</span>
+            <ol><li class="public in">Public</li><li class="all out">All</li></ol>
+          </div>
+        </div>
+        
+                
+        
+        <div class="members" id="types">
+              <h3>Type Members</h3>
+              <ol><li visbl="pub" name="net.anvil.commons.lang.ArgumentsDescriptor">
+      <h4 class="signature"><a href="ArgumentsDescriptor.html">
+      <span class="kind">class</span>
+      <span class="symbol">
+        <span class="name">ArgumentsDescriptor</span><span class="result"> extends AnyRef</span>
+      </span>
+      </a></h4>
+      <p class="comment cmt">Describes the arguments list of a method signature.</p>
+    </li><li visbl="pub" name="net.anvil.commons.lang.ConstructorDescriptor">
+      <h4 class="signature"><a href="ConstructorDescriptor.html">
+      <span class="kind">class</span>
+      <span class="symbol">
+        <span class="name">ConstructorDescriptor</span><span class="tparams">[<span name="T">T</span>]</span><span class="params">(<span name="argumentsDescriptor">argumentsDescriptor: ArgumentsDescriptor</span>)</span><span class="result"> extends ExecutableMemberDescriptor[Constructor[T], T] with Product</span>
+      </span>
+      </a></h4>
+      <p class="comment cmt">Describes a constructor by its declaring class and arguments.</p>
+    </li><li visbl="pub" name="net.anvil.commons.lang.ExecutableMemberDescriptor">
+      <h4 class="signature"><a href="ExecutableMemberDescriptor.html">
+      <span class="kind">class</span>
+      <span class="symbol">
+        <span class="name">ExecutableMemberDescriptor</span><span class="tparams">[<span name="M">M &lt;: AccessibleObject</span>, <span name="T">T</span>]</span><span class="result"> extends AnyRef</span>
+      </span>
+      </a></h4>
+      <p class="comment cmt">Describes an executable class member (either a constructor or a method).</p>
+    </li><li visbl="pub" name="net.anvil.commons.lang.MethodDescriptor">
+      <h4 class="signature"><a href="MethodDescriptor.html">
+      <span class="kind">class</span>
+      <span class="symbol">
+        <span class="name">MethodDescriptor</span><span class="tparams">[<span name="T">T</span>]</span><span class="params">(<span name="name">name: String</span>, <span name="argumentsDescriptor">argumentsDescriptor: ArgumentsDescriptor</span>)</span><span class="result"> extends ExecutableMemberDescriptor[Method, T] with Product</span>
+      </span>
+      </a></h4>
+      <p class="comment cmt">Describes a method by its name and arguments.</p>
+    </li><li visbl="pub" name="net.anvil.commons.lang.WithAnyArguments">
+      <h4 class="signature"><a href="WithAnyArguments.html">
+      <span class="kind">class</span>
+      <span class="symbol">
+        <span class="name">WithAnyArguments</span><span class="params">()</span><span class="result"> extends ArgumentsDescriptor with Product</span>
+      </span>
+      </a></h4>
+      <p class="comment cmt">Describes a a method signature's arguments list that contains arbitrary
+arguments.</p>
+    </li><li visbl="pub" name="net.anvil.commons.lang.WithArgumentTypes">
+      <h4 class="signature"><a href="WithArgumentTypes.html">
+      <span class="kind">class</span>
+      <span class="symbol">
+        <span class="name">WithArgumentTypes</span><span class="params">(<span name="argumentTypes">argumentTypes: List[java.lang.Class[_]]</span>)</span><span class="result"> extends ArgumentsDescriptor with Product</span>
+      </span>
+      </a></h4>
+      <p class="comment cmt">Describes a method's or constructor's signature by its argument types, very
+much alike the syntax of the original <code>Class.getDeclaredMethod()</code>.</p>
+    </li><li visbl="pub" name="net.anvil.commons.lang.WithNumberOfArguments">
+      <h4 class="signature"><a href="WithNumberOfArguments.html">
+      <span class="kind">class</span>
+      <span class="symbol">
+        <span class="name">WithNumberOfArguments</span><span class="params">(<span name="numberOfArguments">numberOfArguments: Int</span>)</span><span class="result"> extends ArgumentsDescriptor with Product</span>
+      </span>
+      </a></h4>
+      <p class="comment cmt">Describes a method's or constructor's signature by its number of arguments.</p>
+    </li></ol>
+            </div>
+        
+        <div class="members" id="values">
+              <h3>Value Members</h3>
+              <ol><li visbl="pub" name="net.anvil.commons.lang.ConstructorDescriptor">
+      <h4 class="signature"><a href="ConstructorDescriptor$.html">
+      <span class="kind">object</span>
+      <span class="symbol">
+        <span class="name">ConstructorDescriptor</span><span class="result"> extends AnyRef</span>
+      </span>
+      </a></h4>
+      
+    </li><li visbl="pub" name="net.anvil.commons.lang.MethodDescriptor">
+      <h4 class="signature"><a href="MethodDescriptor$.html">
+      <span class="kind">object</span>
+      <span class="symbol">
+        <span class="name">MethodDescriptor</span><span class="result"> extends AnyRef</span>
+      </span>
+      </a></h4>
+      
+    </li><li visbl="pub" name="net.anvil.commons.lang.Reflection">
+      <h4 class="signature"><a href="Reflection$.html">
+      <span class="kind">object</span>
+      <span class="symbol">
+        <span class="name">Reflection</span><span class="result"> extends AnyRef</span>
+      </span>
+      </a></h4>
+      <p class="comment cmt">Utilities for reflective operations.</p>
+    </li><li visbl="pub" name="net.anvil.commons.lang.WithArgumentTypes">
+      <h4 class="signature"><a href="WithArgumentTypes$.html">
+      <span class="kind">object</span>
+      <span class="symbol">
+        <span class="name">WithArgumentTypes</span><span class="result"> extends AnyRef</span>
+      </span>
+      </a></h4>
+      
+    </li></ol>
+            </div>
+                
+      </div>
+      
+      <div id="tooltip"></div>
+      
+    </body>
+      </html>

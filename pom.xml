@@ -3,8 +3,8 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>net.anvil</groupId>
 	<artifactId>ScalaEasyMock</artifactId>
-	<version>1.0.0-SNAPSHOT</version>
-	<description>Scala API for EasyMock 2.5 controls and class extension</description>
+	<version>1.1.0-SNAPSHOT</version>
+	<description>Scala API for EasyMock 3.0 controls</description>
 	<organization>
 		<name>the-anvil.net</name>
 		<url>http://www.the-anvil.net</url>
@@ -41,14 +41,8 @@
 		</dependency>
 		<dependency>
 			<groupId>org.easymock</groupId>
-			<artifactId>easymockclassextension</artifactId>
-			<version>2.5.2</version>
-		</dependency>
-		<dependency>
-			<groupId>org.easymock</groupId>
 			<artifactId>easymock</artifactId>
-			<version>2.5.2</version>
-			<type>jar</type>
+			<version>3.0</version>
 		</dependency>
 	</dependencies>
 	<build>

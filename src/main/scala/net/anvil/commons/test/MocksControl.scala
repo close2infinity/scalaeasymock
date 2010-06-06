@@ -15,8 +15,8 @@
 package net.anvil.commons.test
 
 import collection.mutable.ArrayBuffer
-import org.easymock.classextension.{ConstructorArgs, IMocksControl}
-import org.easymock.classextension.EasyMock.createControl
+import org.easymock.{ConstructorArgs, IMocksControl}
+import org.easymock.EasyMock.createControl
 import net.anvil.commons.lang._
 
 /**

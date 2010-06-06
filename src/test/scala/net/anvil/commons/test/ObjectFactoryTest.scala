@@ -18,7 +18,7 @@ import java.lang.reflect.Method
 import org.junit._
 import org.junit.runner._
 import org.junit.Assert._
-import org.easymock.classextension.ConstructorArgs
+import org.easymock.ConstructorArgs
 import org.scalatest.junit._
 import net.anvil.commons.lang._
 

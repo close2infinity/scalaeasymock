@@ -21,8 +21,8 @@ import java.util.Arrays
 
 import org.junit.runner._
 import org.junit.Assert._
-import org.easymock.classextension.EasyMock.createControl
-import org.easymock.classextension.ConstructorArgs
+import org.easymock.EasyMock.createControl
+import org.easymock.ConstructorArgs
 import org.scalatest.junit._
 
 import net.anvil.commons.lang._

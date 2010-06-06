@@ -15,7 +15,7 @@
 package net.anvil.commons.test
 
 import java.lang.reflect.{Method, Constructor}
-import org.easymock.classextension.{ConstructorArgs, IMocksControl}
+import org.easymock.{ConstructorArgs, IMocksControl}
 import net.anvil.commons.lang._
 
 /**

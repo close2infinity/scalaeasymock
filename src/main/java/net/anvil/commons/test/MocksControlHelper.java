@@ -14,7 +14,7 @@
  */
 package net.anvil.commons.test;
 
-import org.easymock.classextension.IMocksControl;
+import org.easymock.IMocksControl;
 
 public class MocksControlHelper {
 

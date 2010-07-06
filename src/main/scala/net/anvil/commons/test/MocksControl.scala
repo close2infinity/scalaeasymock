@@ -15,8 +15,8 @@
 package net.anvil.commons.test
 
 import collection.mutable.ArrayBuffer
-import org.easymock.{ConstructorArgs, IMocksControl}
-import org.easymock.EasyMock.createControl
+import org.easymock.{ ConstructorArgs, IMocksControl }
+import org.easymock.EasyMock.{ createControl, createMockBuilder }
 import net.anvil.commons.lang._
 
 /**
@@ -43,9 +43,11 @@ class MocksControl(val decorated: IMocksControl) {
     (name: String = nameFrom, constructorArgs: ConstructorArgs = NoConstructorArgs)
     (implicit manifest: Manifest[T]): T =
   {
-    if (constructorArgs != NoConstructorArgs) 
-      decorated.createMock(name, manifest.erasure, constructorArgs).asInstanceOf[T]
-    else MocksControlHelper.createMock(decorated, name, manifest.erasure).asInstanceOf[T]
+    var mockBuilder = createMockBuilder(manifest.erasure)  
+      
+    if (constructorArgs != NoConstructorArgs)
+      mockBuilder = mockBuilder.withConstructor(constructorArgs.getConstructor).withArgs(constructorArgs.getInitArgs: _*)  
+    mockBuilder.createMock(name, decorated).asInstanceOf[T]
   }
 
   /** 
@@ -75,12 +77,13 @@ class MocksControl(val decorated: IMocksControl) {
     (firstMockedMethodDescriptor: MethodDescriptor[T], otherMockedMethodDescriptors: MethodDescriptor[T]*)
     (implicit manifest: Manifest[T]): T = 
   {
+    var mockBuilder = createMockBuilder(manifest.erasure)  
     val mockedMethods = 
       Reflection.findAllDeclaredMethodsIn[T](firstMockedMethodDescriptor, otherMockedMethodDescriptors: _*)
         
     if (constructorArgs != NoConstructorArgs) 
-      decorated.createMock(name, manifest.erasure, constructorArgs, mockedMethods: _*).asInstanceOf[T]
-    else decorated.createMock(name, manifest.erasure, mockedMethods: _*).asInstanceOf[T]
+      mockBuilder = mockBuilder.withConstructor(constructorArgs.getConstructor).withArgs(constructorArgs.getInitArgs: _*)  
+    mockBuilder.addMockedMethods(mockedMethods: _*).createMock(name, decorated).asInstanceOf[T]
   }
 
   /** 
